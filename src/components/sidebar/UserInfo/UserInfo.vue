@@ -29,6 +29,7 @@
 
 <script>
 import UserService from '../../../services/base.service';
+import moment from 'moment';
 
 export default {
   name: 'UserInfo',
@@ -54,7 +55,7 @@ export default {
         this.surname = user.surname;
         this.gender = user.gender;
         this.temperature = user.temperature;
-        this.date = user.date;
+        this.date = moment(user.data).format('LL');
       })
       .catch(e => console.log(e));
   },

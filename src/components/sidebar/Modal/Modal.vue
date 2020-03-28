@@ -33,12 +33,16 @@
         </b-field>
 
         <b-field label="Gender">
-          <b-input
-            type="text"
-            v-model="gender"
-            placeholder="Your Gender"
-            required
-          ></b-input>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" v-model="gender" v-bind:value="male" />
+              male
+            </label>
+            <label class="radio" required>
+              <input type="radio" v-model="gender" v-bind:value="female" />
+              female
+            </label>
+          </div>
         </b-field>
       </section>
       <footer class="modal-card-foot">
@@ -63,10 +67,23 @@ export default {
       surname: '',
       temperature: '',
       gender: '',
+      male: 'male',
+      female: 'female',
     };
   },
   methods: {
     createUser() {
+      if (
+        this.name === '' ||
+        this.surname === '' ||
+        this.temperature === '' ||
+        this.gender === ''
+      ) {
+        console.log('something went wrong');
+
+        this.$parent.close();
+        return;
+      }
       const user = {
         name: this.name,
         surname: this.surname,
@@ -77,6 +94,8 @@ export default {
       UserService.createUser(user)
         .then(res => localStorage.setItem('userId', res.headers.user))
         .catch(e => console.log(e, 2));
+
+      this.$parent.close();
     },
   },
 };

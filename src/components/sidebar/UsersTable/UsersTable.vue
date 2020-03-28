@@ -4,6 +4,7 @@
 
 <script>
 import UserService from '../../../services/base.service';
+import moment from 'moment';
 
 export default {
   data() {
@@ -38,7 +39,10 @@ export default {
   created() {
     UserService.getAllNearUsesr()
       .then(users => {
-        this.data = users;
+        this.data = users.map(user => ({
+          ...user,
+          date: moment(user.data).format('LL'),
+        }));
       })
       .catch(e => console.log(e));
   },

@@ -1,7 +1,7 @@
 <template>
   <header>
-    <div class="header-content">
-      <div class="title">
+    <div class="header-content has-text-center">
+      <div class="title word-to-everyone">
         <h1>Stay home and Save world !!!</h1>
       </div>
 
