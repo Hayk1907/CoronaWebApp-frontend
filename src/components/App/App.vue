@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Sidebar />
+    <div class="main">
+      <Sidebar />
+      <Map />
+    </div>
     <!-- <GmapMap
       :center="{ lat: 10, lng: 10 }"
       :zoom="7"
@@ -12,11 +15,12 @@
 </template>
 
 <script>
+import Map from '../Map/Map.vue';
 import Sidebar from '../sidebar/Sidebar.vue';
 
 export default {
   name: 'App',
-  components: { Sidebar },
+  components: { Sidebar, Map },
   // mounted() {
   //   // At this point, the child GmapMap has been mounted, but
   //   // its map has not been initialized.
@@ -29,4 +33,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+@import './app.scss';
+</style>
