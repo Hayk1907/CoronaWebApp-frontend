@@ -1,12 +1,14 @@
 <template>
   <div class="sidebar">
     <Header :userId="userId" />
-    <UserInfo v-if="userId" :userId="userId" />
+    <UserInfo v-if="userId" />
     <UsersTable />
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 import Header from './Header/';
 import UserInfo from './UserInfo/';
 import UsersTable from './UsersTable/';
@@ -14,14 +16,15 @@ import UsersTable from './UsersTable/';
 export default {
   name: 'Sidebar',
   components: { UsersTable, UserInfo, Header },
-  data() {
-    return {
-      userId: null,
-    };
+  computed: {
+    ...mapState(['userId']),
+  },
+  methods: {
+    ...mapActions(['getUserById', 'getNearUsesr']),
   },
   created() {
-    const id = localStorage.getItem('userId');
-    if (id) this.userId = id;
+    this.getUserById();
+    this.getNearUsesr();
   },
 };
 </script>

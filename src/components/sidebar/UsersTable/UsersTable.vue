@@ -1,10 +1,9 @@
 <template>
-  <b-table :data="data" :columns="columns"></b-table>
+  <b-table :data="users" :columns="columns"></b-table>
 </template>
 
 <script>
-import UserService from '../../../services/base.service';
-import moment from 'moment';
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -36,15 +35,8 @@ export default {
       ],
     };
   },
-  created() {
-    UserService.getAllNearUsesr()
-      .then(users => {
-        this.data = users.map(user => ({
-          ...user,
-          date: moment(user.data).format('LL'),
-        }));
-      })
-      .catch(e => console.log(e));
+  computed: {
+    ...mapState(['users']),
   },
 };
 </script>

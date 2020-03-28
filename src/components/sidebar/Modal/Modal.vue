@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import UserService from '../../../services/base.service';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -71,7 +71,11 @@ export default {
       female: 'female',
     };
   },
+  computed: {
+    ...mapState(['currentLocation']),
+  },
   methods: {
+    ...mapActions(['addCurrentUser']),
     createUser() {
       if (
         this.name === '' ||
@@ -84,17 +88,19 @@ export default {
         this.$parent.close();
         return;
       }
+      if (!this.currentLocation.lat && !this.currentLocation.long) {
+        console.log('something went wrong');
+
+        this.$parent.close();
+        return;
+      }
       const user = {
         name: this.name,
         surname: this.surname,
         temperature: this.temperature,
         gender: this.gender,
       };
-
-      UserService.createUser(user)
-        .then(res => localStorage.setItem('userId', res.headers.user))
-        .catch(e => console.log(e, 2));
-
+      this.addCurrentUser(user);
       this.$parent.close();
     },
   },
