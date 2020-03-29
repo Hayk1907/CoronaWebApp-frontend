@@ -2,25 +2,20 @@
   <div class="card user-info">
     <div class="card-content">
       <div class="card-data is-capitalized">
-        <div class="columns is-multiline is-mobile media has-text-justified">
-          <p class="is-4 column bd-notification is-primary">
-            Name : {{ currentUser.name }}
-          </p>
-          <p class="is-4 column bd-notification is-primary">
-            Surname : {{ currentUser.surname }}
-          </p>
+        <div class="columns is-multiline is-mobile user-details has-text-justified">
+          <p class="is-4 column bd-notification is-primary">Name : {{ currentUser.name }}</p>
+          <p class="is-4 column bd-notification is-primary">Surname : {{ currentUser.surname }}</p>
         </div>
-        <div class="columns is-multiline is-mobile media has-text-justified">
+        <div class="columns is-multiline is-mobile user-details has-text-justified">
           <p class="is-5 column">gender : {{ currentUser.gender }}</p>
           <p class="is-5 column">temperature : {{ currentUser.temperature }}</p>
         </div>
       </div>
 
-      <div class="title content is-4">
-        We hope that you will better soon !
-        <br />
+      <div class="title title-msg content is-4">
+        <p>We hope that you will better soon !</p>
       </div>
-      <div class="content is-5">
+      <div class="content is-5 date">
         <time>{{ currentUser.date }}</time>
       </div>
     </div>

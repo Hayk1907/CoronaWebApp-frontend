@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -13,35 +13,38 @@ export default {
         {
           field: 'name',
           label: 'First Name',
-          class: 'users-table',
         },
         {
           field: 'surname',
           label: 'Last Name',
-          class: 'users-table',
         },
         {
           field: 'date',
           label: 'Date',
           centered: true,
-          class: 'users-table',
         },
         {
           field: 'gender',
           label: 'Gender',
-          class: 'users-table',
         },
         {
           field: 'temperature',
           label: 'Temperature',
           width: '40',
-          class: 'users-table',
         },
       ],
     };
   },
   computed: {
-    ...mapState(['users']),
+    ...mapState(['users', 'socket']),
+  },
+  methods: {
+    ...mapActions(['addUser']),
+  },
+  mounted() {
+    this.socket.on('NEW_PACIENT', user => {
+      this.addUser(user);
+    });
   },
 };
 </script>

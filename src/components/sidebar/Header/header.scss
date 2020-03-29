@@ -1,9 +1,23 @@
-.header-content {
-  display: flex;
-  justify-content: center;
+header {
+  padding: 20px;
+
+  .header-content {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+
+    h1 {
+      color: #eeeeee;
+    }
+  }
 }
 .doctor-words {
   margin: 2rem 0.5rem 4rem 0.5rem;
+
+  p {
+    color: #eeeeee;
+    margin-left: 25px;
+  }
 }
 .word-to-everyone {
   margin: 0 1em;

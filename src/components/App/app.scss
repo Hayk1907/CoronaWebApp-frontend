@@ -1,3 +1,6 @@
+html {
+  overflow-y: unset !important;
+}
 .main {
   display: flex;
   height: 100vh;
@@ -10,12 +13,12 @@
       rgba(45, 12, 17, 0.8211659663865546) 99%
     );
     height: 100%;
-    width: 32%;
+    width: 35%;
     min-width: 25rem;
   }
   .map {
     height: 100%;
-    width: 68%;
+    width: 65%;
     min-width: 40rem;
   }
 }

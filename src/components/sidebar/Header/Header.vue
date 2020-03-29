@@ -2,7 +2,7 @@
   <header>
     <div class="header-content has-text-center">
       <div class="title word-to-everyone">
-        <h1>Stay home and Save world !!!</h1>
+        <h1>Stay at home and Save world !!!</h1>
       </div>
 
       <section v-if="!userId">
@@ -26,7 +26,7 @@
       </section>
     </div>
     <div v-if="!userId" class="title content is-4 doctor-words">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </div>
   </header>
 </template>

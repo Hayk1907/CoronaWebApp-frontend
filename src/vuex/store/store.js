@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import moment from 'moment';
+import io from 'socket.io-client';
 
-import UserService from '../services/base.service';
+const baseUrl = 'https://covid-statistics-api.herokuapp.com';
+
+import UserService from '../services/user.service';
 
 Vue.use(Vuex);
 
@@ -15,6 +18,7 @@ export const store = new Vuex.Store({
       long: null,
     },
     users: [],
+    socket: io(baseUrl),
   },
   mutations: {
     SET_CURRENT_USER(state, user) {
@@ -34,6 +38,10 @@ export const store = new Vuex.Store({
       state.currentLocation.lat = lat;
       state.currentLocation.long = long;
     },
+    ADD_USER(state, user) {
+      user.date = moment(user.data).format('LL');
+      state.users.push(user);
+    },
   },
   actions: {
     addCurrentUser({ commit }, user) {
@@ -43,11 +51,13 @@ export const store = new Vuex.Store({
         lat: this.state.currentLocation.lat,
         long: this.state.currentLocation.long,
       };
+
       UserService.createUser(person)
         .then(res => {
+          this.state.socket.emit('CREATE_USER', res.data);
           localStorage.setItem('userId', res.headers.userid);
           commit('SET_CURRENT_USER', res.data);
-          commit('SET_USER_ID', res.headers.user);
+          commit('SET_USER_ID', res.headers.userid);
         })
         .catch(e => console.log(e, 1));
     },
@@ -74,6 +84,8 @@ export const store = new Vuex.Store({
       const id = localStorage.getItem('userId');
       commit('SET_USER_ID', id);
     },
+    addUser({ commit }, user) {
+      commit('ADD_USER', user);
+    },
   },
-  getters: {},
 });

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="main ">
+    <div class="main">
       <Sidebar class="sidebar" />
       <Map class="map" />
     </div>
@@ -34,6 +34,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import './app.scss';
 </style>

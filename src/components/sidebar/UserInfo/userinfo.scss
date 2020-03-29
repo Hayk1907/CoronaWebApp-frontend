@@ -2,5 +2,14 @@
   margin: 1rem 0;
 }
 .user-info {
-  margin: 0 0 2rem 0;
+  margin: 0.9rem;
+  .title-msg p {
+    color: #22b522;
+  }
+  .user-details p {
+    width: 50% !important;
+  }
+  .date {
+    text-align: right;
+  }
 }
