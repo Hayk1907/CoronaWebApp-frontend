@@ -7,7 +7,7 @@
             Name : {{ currentUser.name }}
           </p>
           <p class="is-4 column bd-notification is-primary">
-            Suranme : {{ currentUser.surname }}
+            Surname : {{ currentUser.surname }}
           </p>
         </div>
         <div class="columns is-multiline is-mobile media has-text-justified">
@@ -21,7 +21,7 @@
         <br />
       </div>
       <div class="content is-5">
-        <time datetime="2016-1-1">{{ currentUser.date }}</time>
+        <time>{{ currentUser.date }}</time>
       </div>
     </div>
   </div>

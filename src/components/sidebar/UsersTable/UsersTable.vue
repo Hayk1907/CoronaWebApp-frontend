@@ -1,5 +1,5 @@
 <template>
-  <b-table :data="users" :columns="columns"></b-table>
+  <b-table class="users-table" :data="users" :columns="columns"></b-table>
 </template>
 
 <script>
@@ -13,24 +13,29 @@ export default {
         {
           field: 'name',
           label: 'First Name',
+          class: 'users-table',
         },
         {
           field: 'surname',
           label: 'Last Name',
+          class: 'users-table',
         },
         {
           field: 'date',
           label: 'Date',
           centered: true,
+          class: 'users-table',
         },
         {
           field: 'gender',
           label: 'Gender',
+          class: 'users-table',
         },
         {
           field: 'temperature',
           label: 'Temperature',
           width: '40',
+          class: 'users-table',
         },
       ],
     };
@@ -40,3 +45,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import './users-table.scss';
+</style>

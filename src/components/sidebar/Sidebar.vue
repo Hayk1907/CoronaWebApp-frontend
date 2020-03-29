@@ -20,9 +20,10 @@ export default {
     ...mapState(['userId']),
   },
   methods: {
-    ...mapActions(['getUserById', 'getNearUsesr']),
+    ...mapActions(['getUserById', 'getNearUsesr', 'setUserId']),
   },
   created() {
+    this.setUserId();
     this.getUserById();
     this.getNearUsesr();
   },

@@ -1,5 +1,5 @@
 <template>
-  <form action>
+  <form action class="modal-form">
     <div class="modal-card" style="width: auto">
       <header class="modal-card-head">
         <p class="modal-card-title">Add in list</p>
@@ -25,7 +25,7 @@
 
         <b-field label="Temperature">
           <b-input
-            type="text"
+            type="number"
             v-model="temperature"
             placeholder="Your Temperature"
             required
@@ -109,3 +109,7 @@ export default {
 // https://github.com/gothinkster/vue-realworld-example-app
 // https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/
 </script>
+
+<style lang="scss" scoped>
+@import './modal.scss'
+</style>

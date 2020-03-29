@@ -1,4 +1,21 @@
 .main {
   display: flex;
-}
+  height: 100vh;
 
+  .sidebar {
+    background: rgb(62, 52, 52);
+    background: linear-gradient(
+      162deg,
+      rgba(62, 52, 52, 0.9164040616246498) 42%,
+      rgba(45, 12, 17, 0.8211659663865546) 99%
+    );
+    height: 100%;
+    width: 32%;
+    min-width: 25rem;
+  }
+  .map {
+    height: 100%;
+    width: 68%;
+    min-width: 40rem;
+  }
+}
