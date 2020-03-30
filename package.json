@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack --env.NODE_ENV=stage --config webpack.prod.js",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service --env.NODE_ENV=development -r dotenv/config serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -13,8 +13,8 @@
     "buefy": "^0.8.13",
     "bulma": "^0.8.1",
     "core-js": "^3.6.4",
-    "dotenv": "^8.2.0",
     "moment": "^2.24.0",
+    "path": "^0.12.7",
     "socket.io-client": "^2.3.0",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.11",
@@ -26,16 +26,26 @@
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
     "@vue/eslint-config-prettier": "^6.0.0",
+    "autoprefixer": "^9.7.5",
     "babel-eslint": "^10.0.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "dotenv": "^8.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.1.2",
+    "html-webpack-plugin": "^4.0.3",
     "husky": "^4.2.3",
     "lint-staged": "^9.5.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "stylelint-webpack-plugin": "^1.2.3",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
