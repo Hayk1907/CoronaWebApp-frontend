@@ -9,3 +9,4 @@ module.exports = env =>
       filename: 'main.bundle.[hash].js',
     },
   });
+//"build": "vue-cli-service build",

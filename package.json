@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start":"node src/main.js",
+    "start":"vue-cli-service --env.NODE_ENV=development -r dotenv/config serve",
     "qwerty": "webpack --env.NODE_ENV=stage --config webpack.prod.js",
     "serve": "vue-cli-service --env.NODE_ENV=development -r dotenv/config serve",
-    "build": "vue-cli-service build",
+    "build":"vue-cli-service --env.NODE_ENV=development -r dotenv/config serve",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
