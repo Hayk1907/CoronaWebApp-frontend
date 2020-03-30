@@ -26,13 +26,14 @@
       </section>
     </div>
     <div v-if="!userId" class="title content is-4 doctor-words">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Situation update worldwide, as of {{ date }}.</p>
     </div>
   </header>
 </template>
 
 <script>
 import Modal from '../Modal/';
+import moment from 'moment';
 
 export default {
   components: {
@@ -41,6 +42,7 @@ export default {
   data() {
     return {
       isComponentModalActive: false,
+      date: moment().format('LL'),
     };
   },
   props: {
@@ -50,9 +52,6 @@ export default {
     },
   },
 };
-// https://github.com/zmts/beauty-vuejs-boilerplate
-// https://github.com/gothinkster/vue-realworld-example-app
-// https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/
 </script>
 
 <style lang="scss" scoped>

@@ -48,12 +48,15 @@
           <ValidationProvider
             name="temperature"
             ref="temperature"
-            rules="required"
+            :rules="{
+              required: true,
+              regex: /^(3[5-9]|4[0-2])|(3[5-9]|4[0-2]).([1-9])+$/,
+            }"
             v-slot="{ errors }"
           >
             <b-field label="Temperature">
               <b-input
-                type="number"
+                type="text"
                 name="temperature"
                 v-model="temperature"
                 placeholder="Your Temperature"
@@ -106,12 +109,16 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
-import { required } from 'vee-validate/dist/rules';
+import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
+import { ValidationObserver, extend } from 'vee-validate';
+import * as rules from 'vee-validate/dist/rules';
+import { messages } from 'vee-validate/dist/locale/en.json';
 
-extend('required', {
-  ...required,
-  message: 'This field is required',
+Object.keys(rules).forEach(rule => {
+  extend(rule, {
+    ...rules[rule],
+    message: messages[rule],
+  });
 });
 
 export default {

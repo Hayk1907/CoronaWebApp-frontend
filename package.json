@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node .js",
+    "start": "webpack --env.NODE_ENV=stage --config webpack.prod.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -13,6 +13,7 @@
     "buefy": "^0.8.13",
     "bulma": "^0.8.1",
     "core-js": "^3.6.4",
+    "dotenv": "^8.2.0",
     "moment": "^2.24.0",
     "socket.io-client": "^2.3.0",
     "vee-validate": "^3.2.5",

@@ -40,12 +40,11 @@ export const store = new Vuex.Store({
     },
     ADD_USER(state, user) {
       user.date = moment(user.data).format('LL');
-      state.users.push(user);
+      state.users.unshift(user);
     },
   },
   actions: {
     addCurrentUser({ commit }, user) {
-      //TODO: validate user
       const person = {
         ...user,
         lat: this.state.currentLocation.lat,
