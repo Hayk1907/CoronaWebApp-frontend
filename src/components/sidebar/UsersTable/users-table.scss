@@ -1,6 +1,36 @@
-.table-wrapper {
-  display: flex;
-  justify-content: center;
-  height: 55vh !important;
-  overflow-y: scroll;
+.users-table{
+  margin: 0.9rem;
+  .table-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 55vh !important;
+    overflow-y: scroll;
+
+    .table {
+      width: 100%;
+    }
+  }
+}
+.info-users{
+  color: #ffffff;
+  margin: 0.9rem;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

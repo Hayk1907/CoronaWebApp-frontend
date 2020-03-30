@@ -1,66 +1,124 @@
 <template>
-  <form action class="modal-form">
-    <div class="modal-card" style="width: auto">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Add in list</p>
-      </header>
-      <section class="modal-card-body">
-        <b-field label="Name">
-          <b-input
-            type="text"
-            v-model="name"
-            placeholder="Your Name"
-            required
-          ></b-input>
-        </b-field>
+  <ValidationObserver v-slot="{ handleSubmit }">
+    <form
+      action
+      method="post"
+      class="modal-form"
+      @submit.prevent="handleSubmit(onSubmit)"
+    >
+      <div class="modal-card" style="width: auto">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add in list</p>
+        </header>
+        <section class="modal-card-body">
+          <ValidationProvider
+            name="name"
+            ref="name"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <b-field label="Name">
+              <b-input
+                type="text"
+                name="name"
+                v-model="name"
+                placeholder="Your Name"
+              ></b-input>
+            </b-field>
+            <span class="error">{{ errors[0] }}</span>
+          </ValidationProvider>
 
-        <b-field label="Surname">
-          <b-input
-            type="text"
-            v-model="surname"
-            placeholder="Your Surname"
-            required
-          ></b-input>
-        </b-field>
+          <ValidationProvider
+            name="surname"
+            ref="surname"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <b-field label="Surname">
+              <b-input
+                type="text"
+                v-model="surname"
+                name="surname"
+                placeholder="Your Surname"
+              ></b-input>
+            </b-field>
+            <span class="error">{{ errors[0] }}</span>
+          </ValidationProvider>
 
-        <b-field label="Temperature">
-          <b-input
-            type="number"
-            v-model="temperature"
-            placeholder="Your Temperature"
-            required
-          ></b-input>
-        </b-field>
+          <ValidationProvider
+            name="temperature"
+            ref="temperature"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <b-field label="Temperature">
+              <b-input
+                type="number"
+                name="temperature"
+                v-model="temperature"
+                placeholder="Your Temperature"
+              ></b-input>
+            </b-field>
+            <span class="error">{{ errors[0] }}</span>
+          </ValidationProvider>
 
-        <b-field label="Gender">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" v-model="gender" v-bind:value="male" />
-              male
-            </label>
-            <label class="radio" required>
-              <input type="radio" v-model="gender" v-bind:value="female" />
-              female
-            </label>
-          </div>
-        </b-field>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button" type="button" @click="$parent.close()">
-          Close
-        </button>
-        <button class="button is-primary" type="button" @click="createUser">
-          Add
-        </button>
-      </footer>
-    </div>
-  </form>
+          <ValidationProvider
+            name="gender"
+            ref="gender"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <b-field label="Gender">
+              <div class="control">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    v-model="gender"
+                    v-bind:value="male"
+                    name="gender"
+                  />
+                  male
+                </label>
+                <label class="radio">
+                  <input
+                    type="radio"
+                    v-model="gender"
+                    v-bind:value="female"
+                    name="gender"
+                  />
+                  female
+                </label>
+              </div>
+            </b-field>
+            <span class="error">{{ errors[0] }}</span>
+          </ValidationProvider>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button" type="button" @click="$parent.close()">
+            Close
+          </button>
+          <button class="button is-primary" type="submit">Submit</button>
+        </footer>
+      </div>
+    </form>
+  </ValidationObserver>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
+import { required } from 'vee-validate/dist/rules';
+
+extend('required', {
+  ...required,
+  message: 'This field is required',
+});
 
 export default {
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
   data() {
     return {
       name: '',
@@ -75,22 +133,15 @@ export default {
     ...mapState(['currentLocation']),
   },
   methods: {
-    ...mapActions(['addCurrentUser']),
-    createUser() {
-      if (
-        this.name === '' ||
-        this.surname === '' ||
-        this.temperature === '' ||
-        this.gender === ''
-      ) {
-        console.log('something went wrong');
-
-        this.$parent.close();
-        return;
-      }
+    ...mapActions(['addCurrentUser', 'setLoc']),
+    onSubmit() {
       if (!this.currentLocation.lat && !this.currentLocation.long) {
-        console.log('something went wrong');
-
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: `We don\`t know your lacation turn on and try again`,
+          position: 'is-bottom',
+          type: 'is-danger',
+        });
         this.$parent.close();
         return;
       }
@@ -104,12 +155,21 @@ export default {
       this.$parent.close();
     },
   },
+  created() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        this.setLoc([lat, long]);
+      },
+      function(error) {
+        console.log('The Locator was denied. :(', error);
+      }
+    );
+  },
 };
-// https://github.com/zmts/beauty-vuejs-boilerplate
-// https://github.com/gothinkster/vue-realworld-example-app
-// https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/
 </script>
 
 <style lang="scss" scoped>
-@import './modal.scss'
+@import './modal.scss';
 </style>

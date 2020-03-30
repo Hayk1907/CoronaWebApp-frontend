@@ -71,7 +71,9 @@ export const store = new Vuex.Store({
         .catch(e => console.log(e, 2));
     },
     getNearUsesr({ commit }) {
-      UserService.getAllNearUsesr()
+      const lat = this.state.currentLocation.lat;
+      const long = this.state.currentLocation.long;
+      UserService.getAllNearUsesr(lat, long)
         .then(users => {
           commit('SET_NEAR_USERS', users);
         })

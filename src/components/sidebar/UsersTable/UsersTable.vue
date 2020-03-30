@@ -1,5 +1,24 @@
 <template>
-  <b-table class="users-table" :data="users" :columns="columns"></b-table>
+  <div>
+    <p
+      v-if="!currentLocation.lat && !currentLocation.long"
+      class="is-primary is-4 info-users"
+    >
+      We don`t know your location that we show you Pacients neare 1km
+    </p>
+    <p
+      v-if="users.length === 0 && currentLocation.lat && currentLocation.long"
+      class="is-primary is-4 info-users"
+    >
+      Ther ar no Pacients neare 1km
+    </p>
+    <b-table
+      v-if="users.length !== 0"
+      class="users-table"
+      :data="users"
+      :columns="columns"
+    ></b-table>
+  </div>
 </template>
 
 <script>
@@ -36,7 +55,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['users', 'socket']),
+    ...mapState(['users', 'socket', 'currentLocation']),
   },
   methods: {
     ...mapActions(['addUser']),

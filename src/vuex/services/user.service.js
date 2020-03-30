@@ -8,8 +8,10 @@ export default class UserService {
     return await axios.post(`${baseUrl}/user`, data);
   }
 
-  static async getAllNearUsesr() {
-    const { data } = await axios.get(`${baseUrl}/users`);
+  static async getAllNearUsesr(lat, long) {
+    const { data } = await axios.get(`${baseUrl}/users`, {
+      params: { lat, long },
+    });
     return data;
   }
 

@@ -3,10 +3,11 @@ import App from './components/App/';
 
 import { store } from './vuex/store/store';
 
-import { ValidationProvider, validate } from 'vee-validate';
-
 import Buefy from 'buefy';
 import Bulma from 'bulma';
+
+import 'buefy/dist/buefy.css';
+
 import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use(VueGoogleMaps, {
@@ -26,9 +27,6 @@ Vue.use(VueGoogleMaps, {
 
 Vue.use(Buefy);
 Vue.use(Bulma);
-
-Vue.component('ValidationProvider', ValidationProvider);
-Vue.component('validate', validate);
 
 Vue.config.productionTip = false;
 

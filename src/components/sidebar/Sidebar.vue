@@ -25,7 +25,6 @@ export default {
   created() {
     this.setUserId();
     this.getUserById();
-    this.getNearUsesr();
   },
 };
 </script>

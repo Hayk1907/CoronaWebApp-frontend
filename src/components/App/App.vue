@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="main">
-      <Sidebar class="sidebar" />
+      <Sidebar class="sidebar" ref="element" />
       <Map class="map" />
     </div>
   </div>
@@ -17,17 +17,23 @@ export default {
   name: 'App',
   components: { Sidebar, Map },
   methods: {
-    ...mapActions(['setLoc']),
+    ...mapActions(['setLoc', 'getNearUsesr']),
   },
   created() {
+    const loadingComponent = this.$buefy.loading.open({
+      container: null,
+    });
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
         this.setLoc([lat, long]);
+        this.getNearUsesr();
+        loadingComponent.close();
       },
       function(error) {
         console.log('The Locator was denied. :(', error);
+        loadingComponent.close();
       }
     );
   },
