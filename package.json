@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack --env.NODE_ENV=stage --config webpack.prod.js",
+    "start":"node src/main.js",
+    "qwerty": "webpack --env.NODE_ENV=stage --config webpack.prod.js",
     "serve": "vue-cli-service --env.NODE_ENV=development -r dotenv/config serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
