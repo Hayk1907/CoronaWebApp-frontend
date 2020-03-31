@@ -47,8 +47,8 @@ export default {
           label: 'Gender',
         },
         {
-          field: 'temperature' + 'C',
-          label: 'Temperature',
+          field: 'temperature',
+          label: 'Temperature C',
           width: '40',
         },
       ],
