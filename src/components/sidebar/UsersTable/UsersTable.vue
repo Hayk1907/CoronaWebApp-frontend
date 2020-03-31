@@ -4,7 +4,7 @@
       v-if="!currentLocation.lat && !currentLocation.long"
       class="is-primary is-4 info-users"
     >
-      We don`t know your location that we show you Pacients neare 1km
+      We don`t know your location that we show you Infected near 1km
     </p>
     <p
       v-if="users.length === 0 && currentLocation.lat && currentLocation.long"
@@ -48,7 +48,7 @@ export default {
         },
         {
           field: 'temperature',
-          label: 'Temperature',
+          label: 'Temperature' + ' C',
           width: '40',
         },
       ],
