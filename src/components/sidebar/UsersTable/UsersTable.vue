@@ -10,7 +10,7 @@
       v-if="users.length === 0 && currentLocation.lat && currentLocation.long"
       class="is-primary is-4 info-users"
     >
-      Ther are not Infected people neare 1km
+      Ther are not Infected people near 1km
     </p>
     <b-table
       v-if="users.length !== 0"
