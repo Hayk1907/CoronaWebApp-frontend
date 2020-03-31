@@ -62,12 +62,17 @@ export const store = new Vuex.Store({
     },
     getUserById({ commit }) {
       const id = this.state.userId;
-      if (!id) return;
-      UserService.getUserById(id)
-        .then(user => {
-          commit('SET_CURRENT_USER', user);
-        })
-        .catch(e => console.log(e, 2));
+      if (!id) {
+        localStorage.clear()
+        return
+      };
+      else {
+        UserService.getUserById(id)
+          .then(user => {
+            commit('SET_CURRENT_USER', user);
+          })
+          .catch(e => console.log(e, 2));
+      }
     },
     getNearUsesr({ commit }) {
       const lat = this.state.currentLocation.lat;
