@@ -7,13 +7,11 @@ import Buefy from 'buefy';
 import Bulma from 'bulma';
 
 import 'buefy/dist/buefy.css';
-import { key } from '../getEnvKeys'
 
 import * as VueGoogleMaps from 'vue2-google-maps';
-console.log(process.env.G_KEY);
 Vue.use(VueGoogleMaps, {
   load: {
-    key: key,
+    key: process.env.VUE_APP_G_KEY,
     libraries: 'places,drawing,visualization',
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'
