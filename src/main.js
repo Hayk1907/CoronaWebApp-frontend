@@ -13,14 +13,7 @@ Vue.use(VueGoogleMaps, {
   load: {
     key: process.env.VUE_APP_G_KEY,
     libraries: 'places,drawing,visualization',
-    // OR: libraries: 'places,drawing'
-    // OR: libraries: 'places,drawing,visualization'
   },
-  //// If you intend to programmatically custom event listener code
-  //// (e.g. `this.$refs.gmap.$on('zoom_changed', someFunc)`)
-  //// instead of going through Vue templates (e.g. `<GmapMap @zoom_changed="someFunc">`)
-  //// you might need to turn this on.
-  // autobindAllEvents: false,
   installComponents: true,
 });
 
