@@ -4,13 +4,13 @@
       v-if="!currentLocation.lat && !currentLocation.long"
       class="is-primary is-4 info-users"
     >
-      We don`t know your location that we show you Infected near 1km
+      We don`t know your location that we show you Infected people near 1km
     </p>
     <p
       v-if="users.length === 0 && currentLocation.lat && currentLocation.long"
       class="is-primary is-4 info-users"
     >
-      Ther ar no Pacients neare 1km
+      Ther are not Infected people neare 1km
     </p>
     <b-table
       v-if="users.length !== 0"
@@ -48,7 +48,7 @@ export default {
         },
         {
           field: 'temperature',
-          label: 'Temperature C',
+          label: 'Temperature',
           width: '40',
         },
       ],

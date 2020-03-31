@@ -155,7 +155,7 @@ export default {
       const user = {
         name: this.name,
         surname: this.surname,
-        temperature: this.temperature,
+        temperature: `${this.temperature} C`,
         gender: this.gender,
       };
       this.addCurrentUser(user);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://covid-statistics-api.herokuapp.com';
+const baseUrl = process.env.VUE_APP_BACK_API;
 
 export default class UserService {
   static async createUser(data) {

@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import moment from 'moment';
 import io from 'socket.io-client';
 
-const baseUrl = 'https://covid-statistics-api.herokuapp.com';
+const baseUrl = process.env.VUE_APP_BACK_API;
 
 import UserService from '../services/user.service';
 
